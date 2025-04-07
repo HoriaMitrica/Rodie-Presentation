@@ -1,0 +1,9 @@
+.piano-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(10, 10, 26, 0.9) 100%);
+  backdrop-filter: blur(10px);
+} 

@@ -1,0 +1,92 @@
+.card {
+  @include card;
+  
+  &-header {
+    margin-bottom: $spacing-md;
+    
+    h3 {
+      margin-bottom: $spacing-xs;
+    }
+    
+    p {
+      color: $color-gray-600;
+      margin-bottom: 0;
+    }
+  }
+  
+  &-body {
+    margin-bottom: $spacing-md;
+  }
+  
+  &-footer {
+    padding-top: $spacing-md;
+    border-top: 1px solid $color-gray-200;
+  }
+  
+  &-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: $border-radius-md;
+    margin-bottom: $spacing-md;
+  }
+  
+  &-hover {
+    transition: transform $transition-normal ease, box-shadow $transition-normal ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $shadow-lg;
+    }
+  }
+  
+  &-feature {
+    @include flex(column, flex-start, flex-start);
+    text-align: left;
+    height: 100%;
+    
+    .icon {
+      font-size: $font-size-3xl;
+      color: $color-primary;
+      margin-bottom: $spacing-md;
+    }
+    
+    h3 {
+      margin-bottom: $spacing-sm;
+    }
+    
+    p {
+      color: $color-gray-600;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &-testimonial {
+    @include flex(column, flex-start, center);
+    text-align: center;
+    
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: $spacing-md;
+      object-fit: cover;
+    }
+    
+    .quote {
+      font-style: italic;
+      color: $color-gray-700;
+      margin-bottom: $spacing-md;
+    }
+    
+    .author {
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-xs;
+    }
+    
+    .title {
+      color: $color-gray-600;
+      font-size: $font-size-sm;
+    }
+  }
+} 

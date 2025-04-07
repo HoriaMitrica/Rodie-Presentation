@@ -1,0 +1,55 @@
+.app-container {
+  @include flex(column, flex-start, stretch);
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  padding: $spacing-lg 0;
+  
+  @include respond-to(md) {
+    padding: $spacing-xl 0;
+  }
+}
+
+// Grid system
+.row {
+  @include flex(row, flex-start, stretch, wrap);
+  margin: 0 -$spacing-md;
+  
+  @include respond-to(md) {
+    margin: 0 -$spacing-lg;
+  }
+}
+
+.col {
+  flex: 1 0 0%;
+  padding: 0 $spacing-md;
+  margin-bottom: $spacing-lg;
+  
+  @include respond-to(md) {
+    padding: 0 $spacing-lg;
+    margin-bottom: 0;
+  }
+}
+
+// Column sizes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 auto;
+    width: percentage($i / 12);
+  }
+}
+
+// Responsive columns
+@each $breakpoint in (sm, md, lg, xl, 2xl) {
+  @include respond-to($breakpoint) {
+    @for $i from 1 through 12 {
+      .col-#{$breakpoint}-#{$i} {
+        flex: 0 0 auto;
+        width: percentage($i / 12);
+      }
+    }
+  }
+} 

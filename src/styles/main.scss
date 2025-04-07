@@ -1,0 +1,694 @@
+// Base
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/reset';
+@import 'base/base';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+// Components
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/piano';
+
+// Pages
+@import 'pages/home';
+@import 'pages/piano-page';
+
+// Variables
+$primary-color: #6c63ff;
+$secondary-color: #4a00e0;
+$accent-color: #00ff9d;
+$text-color: #ffffff;
+$text-secondary: #e0e0e0;
+$background-dark: #0a0a1a;
+$background-light: #1a1a2e;
+$border-color: #2a2a4a;
+$text-color-secondary: #b3b3b3;
+$background-color: #0a0a0a;
+$card-background: #1a1a1a;
+$success-color: #4caf50;
+$error-color: #f44336;
+$warning-color: #ff9800;
+$info-color: #2196f3;
+
+// Gradients
+$primary-gradient: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+$dark-gradient: linear-gradient(135deg, $background-dark 0%, $background-light 100%);
+$card-gradient: linear-gradient(135deg, rgba(42, 42, 74, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+
+// Typography
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-large: 18px;
+$font-size-xlarge: 24px;
+$font-size-xxlarge: 32px;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 8rem;
+$spacing-xxl: 48px;
+
+// Border radius
+$border-radius-sm: 0.5rem;
+$border-radius-md: 1rem;
+$border-radius-lg: 2rem;
+$border-radius-xl: 24px;
+$border-radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+$shadow-xl: 0 16px 24px rgba(0, 0, 0, 0.4);
+$shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-base: all 0.3s ease;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+@mixin glass-effect {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@mixin neon-glow($color) {
+  box-shadow: 0 0 10px rgba($color, 0.5),
+              0 0 20px rgba($color, 0.3),
+              0 0 30px rgba($color, 0.1);
+}
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  color: $text-color;
+  background: $background-dark;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+      rgba(10, 10, 26, 0.95) 0%,
+      rgba(26, 26, 46, 0.95) 50%,
+      rgba(74, 0, 224, 0.1) 100%
+    );
+    animation: backgroundPulse 10s ease-in-out infinite;
+    z-index: -1;
+  }
+}
+
+@keyframes backgroundPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+a {
+  color: $text-color;
+  text-decoration: none;
+  transition: $transition-base;
+  
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  transition: $transition-base;
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include responsive(md) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-md;
+  font-weight: $font-weight-medium;
+  transition: all $transition-fast;
+  text-align: center;
+  
+  &-primary {
+    background: $primary-gradient;
+    color: $text-color;
+    @include neon-glow($secondary-color);
+    
+    &:hover {
+      transform: translateY(-2px);
+      @include neon-glow($accent-color);
+    }
+  }
+  
+  &-secondary {
+    background: transparent;
+    color: $text-color;
+    border: 1px solid $accent-color;
+    
+    &:hover {
+      background: rgba($accent-color, 0.1);
+    }
+  }
+  
+  &-large {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-large;
+  }
+}
+
+// Cards
+.card {
+  background: $card-gradient;
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-md;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Navigation
+nav {
+  @include flex-between;
+  padding: $spacing-sm 0;
+  
+  .logo {
+    @include flex-center;
+    gap: $spacing-xs;
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+
+    svg {
+      color: $primary-color;
+    }
+  }
+  
+  .nav-links {
+    @include flex-center;
+    gap: $spacing-md;
+    
+    a {
+      position: relative;
+      padding: $spacing-xs 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $primary-gradient;
+        transition: $transition-base;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Hero section
+.hero {
+  min-height: 80vh;
+  @include flex-center;
+  text-align: center;
+  background: $dark-gradient;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba($secondary-color, 0.2) 0%, transparent 70%);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: $spacing-xl 0;
+    
+    h1 {
+      font-size: $font-size-xxlarge;
+      margin-bottom: $spacing-lg;
+      background: $primary-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    p {
+      font-size: $font-size-large;
+      margin-bottom: $spacing-xl;
+      color: $text-color-secondary;
+    }
+  }
+}
+
+// Features section
+.features {
+  padding: $spacing-xxl 0;
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    
+    h2 {
+      font-size: $font-size-xxlarge;
+      margin-bottom: $spacing-md;
+      background: $primary-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    p {
+      color: $text-color-secondary;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    @include responsive(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include responsive(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// Footer
+footer {
+  width: 100%;
+  background: rgba(10, 10, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: $spacing-lg 0;
+  margin-top: auto;
+  
+  .footer-content {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+
+      h3 {
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+      }
+      
+      p {
+        color: $text-secondary;
+      }
+      
+      .social-links {
+        @include flex-center;
+        gap: $spacing-sm;
+        
+        a {
+          @include flex-center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: $card-gradient;
+          transition: $transition-base;
+          
+          &:hover {
+            transform: translateY(-3px);
+            @include neon-glow($primary-color);
+          }
+        }
+      }
+      
+      a {
+        display: block;
+        color: $text-color-secondary;
+        margin-bottom: $spacing-sm;
+        transition: all $transition-fast;
+        
+        &:hover {
+          color: $accent-color;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+  
+  .footer-bottom {
+    margin-top: $spacing-lg;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: $text-secondary;
+  }
+}
+
+// Piano component styles
+.piano-component {
+  padding: $spacing-xl 0;
+  
+  .piano-controls {
+    @include flex-center;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+    
+    .control-button {
+      background: $primary-gradient;
+      color: $text-color;
+      width: 50px;
+      height: 50px;
+      border-radius: $border-radius-full;
+      @include flex-center;
+      @include neon-glow($secondary-color);
+      transition: all $transition-fast;
+      
+      &:hover {
+        transform: scale(1.1);
+        @include neon-glow($accent-color);
+      }
+    }
+    
+    .volume-control {
+      @include flex-center;
+      gap: $spacing-md;
+      
+      input[type="range"] {
+        width: 150px;
+        height: 5px;
+        -webkit-appearance: none;
+        background: $border-color;
+        border-radius: $border-radius-full;
+        outline: none;
+        
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          width: 15px;
+          height: 15px;
+          border-radius: $border-radius-full;
+          background: $accent-color;
+          cursor: pointer;
+          transition: all $transition-fast;
+          
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  }
+  
+  .piano-container {
+    margin: 0 auto;
+    max-width: 1000px;
+    overflow-x: auto;
+    padding: $spacing-md;
+    background: $card-gradient;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-lg;
+  }
+  
+  .piano-instructions {
+    max-width: 600px;
+    margin: $spacing-xl auto 0;
+    text-align: center;
+    
+    h3 {
+      font-size: $font-size-large;
+      margin-bottom: $spacing-md;
+      color: $accent-color;
+    }
+    
+    p {
+      color: $text-color-secondary;
+      margin-bottom: $spacing-sm;
+    }
+  }
+}
+
+// Piano page styles
+.piano-hero {
+  background: $dark-gradient;
+  padding: $spacing-xxl 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba($secondary-color, 0.2) 0%, transparent 70%);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    
+    h1 {
+      font-size: $font-size-xxlarge;
+      margin-bottom: $spacing-lg;
+      background: $primary-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    p {
+      font-size: $font-size-large;
+      max-width: 600px;
+      margin: 0 auto;
+      color: $text-color-secondary;
+    }
+  }
+}
+
+.piano-instructions, .piano-tips {
+  padding: $spacing-xxl 0;
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    
+    h2 {
+      font-size: $font-size-xxlarge;
+      margin-bottom: $spacing-md;
+      background: $primary-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+  
+  .instructions-grid, .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    @include responsive(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .instruction-card, .tip-card {
+      background: $card-gradient;
+      padding: $spacing-lg;
+      border-radius: $border-radius-lg;
+      box-shadow: $shadow-md;
+      transition: transform $transition-normal, box-shadow $transition-normal;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-lg;
+      }
+      
+      h3 {
+        font-size: $font-size-large;
+        margin-bottom: $spacing-md;
+        color: $accent-color;
+      }
+      
+      p {
+        color: $text-color-secondary;
+      }
+    }
+  }
+}
+
+// Main content
+main {
+  flex: 1;
+  padding-top: 80px; // Account for fixed header
+  min-height: calc(100vh - 80px - 200px); // Subtract header and footer height
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+  html {
+    font-size: 14px;
+  }
+  
+  .hero {
+    min-height: 60vh;
+    
+    .hero-content {
+      h1 {
+        font-size: $font-size-xlarge;
+      }
+      
+      p {
+        font-size: $font-size-base;
+      }
+    }
+  }
+  
+  .features-grid, .instructions-grid, .tips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .piano-component {
+    .piano-controls {
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+  }
+
+  nav {
+    flex-direction: column;
+    gap: $spacing-sm;
+    text-align: center;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+} 

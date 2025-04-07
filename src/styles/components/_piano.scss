@@ -1,0 +1,117 @@
+.piano-component {
+  @include flex(column, center, center);
+  width: 100%;
+  padding: $spacing-lg;
+  background-color: $color-gray-100;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  
+  @include respond-to(md) {
+    padding: $spacing-xl;
+  }
+}
+
+.piano-keyboard {
+  @include flex(row, center, flex-end);
+  position: relative;
+  height: $piano-white-key-height;
+  margin-bottom: $spacing-lg;
+  padding: 0 $spacing-md;
+  background-color: $color-gray-200;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  
+  @include respond-to(md) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+.piano-key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  user-select: none;
+  transition: all $transition-fast ease;
+  
+  &.white {
+    width: $piano-white-key-width;
+    height: $piano-white-key-height;
+    background-color: $color-white;
+    border: 1px solid $color-gray-300;
+    border-radius: 0 0 $border-radius-sm $border-radius-sm;
+    z-index: 1;
+    
+    &:hover {
+      background-color: darken($color-white, 5%);
+    }
+    
+    &.active {
+      background-color: darken($color-white, 10%);
+      transform: translateY(2px);
+    }
+    
+    .note-name {
+      margin-bottom: $spacing-sm;
+      color: $color-gray-700;
+      font-size: $font-size-sm;
+    }
+    
+    .keyboard-key {
+      margin-bottom: $spacing-md;
+      padding: $spacing-xs $spacing-sm;
+      background-color: $color-gray-200;
+      border-radius: $border-radius-sm;
+      color: $color-gray-700;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+    }
+  }
+  
+  &.black {
+    width: $piano-black-key-width;
+    height: $piano-black-key-height;
+    background-color: $color-black;
+    border-radius: 0 0 $border-radius-sm $border-radius-sm;
+    z-index: 2;
+    margin: 0 -$piano-black-key-width / 2;
+    
+    &:hover {
+      background-color: lighten($color-black, 10%);
+    }
+    
+    &.active {
+      background-color: lighten($color-black, 20%);
+      transform: translateY(2px);
+    }
+    
+    .note-name {
+      margin-bottom: $spacing-sm;
+      color: $color-white;
+      font-size: $font-size-sm;
+    }
+    
+    .keyboard-key {
+      margin-bottom: $spacing-md;
+      padding: $spacing-xs $spacing-sm;
+      background-color: $color-gray-800;
+      border-radius: $border-radius-sm;
+      color: $color-white;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+.keyboard-instructions {
+  text-align: center;
+  margin-top: $spacing-md;
+  
+  p {
+    margin-bottom: $spacing-xs;
+    color: $color-gray-600;
+    font-size: $font-size-sm;
+  }
+} 

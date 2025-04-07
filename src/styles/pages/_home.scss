@@ -1,0 +1,82 @@
+.home-container {
+  .hero {
+    background: linear-gradient(135deg, $color-primary, darken($color-primary, 20%));
+    color: $color-white;
+    padding: $spacing-2xl 0;
+    text-align: center;
+    
+    @include respond-to(md) {
+      padding: $spacing-3xl 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 $spacing-lg;
+      
+      h1 {
+        color: $color-white;
+        margin-bottom: $spacing-md;
+        @include fade-in($transition-slow);
+      }
+      
+      p {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-xl;
+        opacity: 0.9;
+        @include slide-up($transition-slow);
+      }
+      
+      .cta-buttons {
+        @include flex(row, center, center);
+        gap: $spacing-md;
+        @include slide-up($transition-slow);
+        
+        @include respond-to(sm) {
+          gap: $spacing-lg;
+        }
+      }
+    }
+  }
+  
+  .features {
+    padding: $spacing-2xl 0;
+    
+    @include respond-to(md) {
+      padding: $spacing-3xl 0;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: $spacing-xl;
+    }
+    
+    .feature-grid {
+      @include grid(1, $spacing-lg);
+      
+      @include respond-to(sm) {
+        @include grid(2, $spacing-xl);
+      }
+      
+      @include respond-to(lg) {
+        @include grid(3, $spacing-xl);
+      }
+      
+      .feature-card {
+        @include card;
+        @include flex(column, flex-start, flex-start);
+        text-align: left;
+        height: 100%;
+        
+        h3 {
+          margin-bottom: $spacing-sm;
+        }
+        
+        p {
+          color: $color-gray-600;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+} 

@@ -1,0 +1,110 @@
+.piano-page {
+  .piano-hero {
+    background: linear-gradient(135deg, $color-secondary, darken($color-secondary, 20%));
+    color: $color-white;
+    padding: $spacing-xl 0;
+    text-align: center;
+    
+    @include respond-to(md) {
+      padding: $spacing-2xl 0;
+    }
+    
+    h1 {
+      color: $color-white;
+      margin-bottom: $spacing-sm;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  
+  .piano-container {
+    max-width: 1000px;
+    margin: -$spacing-xl auto 0;
+    padding: 0 $spacing-lg;
+    position: relative;
+    z-index: 1;
+    
+    @include respond-to(md) {
+      margin-top: -$spacing-2xl;
+      padding: 0 $spacing-xl;
+    }
+  }
+  
+  .piano-instructions {
+    padding: $spacing-2xl 0;
+    
+    h2 {
+      text-align: center;
+      margin-bottom: $spacing-xl;
+    }
+    
+    .instruction-cards {
+      @include grid(1, $spacing-lg);
+      
+      @include respond-to(sm) {
+        @include grid(2, $spacing-xl);
+      }
+      
+      .instruction-card {
+        @include card;
+        
+        h3 {
+          margin-bottom: $spacing-md;
+          color: $color-primary;
+        }
+        
+        ul {
+          list-style-type: disc;
+          padding-left: $spacing-lg;
+          margin-top: $spacing-sm;
+          
+          li {
+            margin-bottom: $spacing-xs;
+            color: $color-gray-700;
+          }
+        }
+      }
+    }
+  }
+  
+  .piano-tips {
+    background-color: $color-gray-100;
+    padding: $spacing-2xl 0;
+    
+    h2 {
+      text-align: center;
+      margin-bottom: $spacing-xl;
+    }
+    
+    .tips-content {
+      @include grid(1, $spacing-lg);
+      
+      @include respond-to(sm) {
+        @include grid(2, $spacing-xl);
+      }
+      
+      @include respond-to(lg) {
+        @include grid(3, $spacing-xl);
+      }
+      
+      .tip {
+        @include card;
+        
+        h3 {
+          margin-bottom: $spacing-sm;
+          color: $color-secondary;
+        }
+        
+        p {
+          color: $color-gray-600;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+} 

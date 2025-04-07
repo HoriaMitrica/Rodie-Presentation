@@ -1,0 +1,83 @@
+.btn {
+  @include button-base;
+  
+  &-primary {
+    @include button-primary;
+  }
+  
+  &-secondary {
+    @include button-secondary;
+  }
+  
+  &-accent {
+    @include button-base;
+    background-color: $color-accent;
+    color: $color-white;
+    
+    &:hover {
+      background-color: darken($color-accent, 10%);
+    }
+  }
+  
+  &-outline {
+    @include button-base;
+    background-color: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+    
+    &-secondary {
+      border-color: $color-secondary;
+      color: $color-secondary;
+      
+      &:hover {
+        background-color: $color-secondary;
+        color: $color-white;
+      }
+    }
+    
+    &-accent {
+      border-color: $color-accent;
+      color: $color-accent;
+      
+      &:hover {
+        background-color: $color-accent;
+        color: $color-white;
+      }
+    }
+  }
+  
+  &-large {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-lg;
+  }
+  
+  &-small {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-sm;
+  }
+  
+  &-block {
+    display: block;
+    width: 100%;
+  }
+  
+  &-icon {
+    @include flex(row, center, center);
+    gap: $spacing-xs;
+    
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+} 
